@@ -1,10 +1,10 @@
 import React from 'react'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
-import { Button } from 'reactstrap'
 
 import Layout from '../components/layout'
 import Carousel from '../components/productCarousel'
+import AddButton from "../components/addToCart"
 import '../styles/product.css'
 
 function ProductTemplate(props) {
@@ -13,19 +13,18 @@ function ProductTemplate(props) {
   return (
     <Layout>
       <h2>{product.attributes.name}</h2>
-      <p>${product.price}</p>
-      <p><strong>*****</strong></p>
+      <p><strong>${product.price}</strong></p>
+      {/* <p><strong>*****</strong></p> */}
         <Img fluid={product.localFiles[0].childImageSharp.fluid}/>
         {/* <div style={{maxHeight: `100px`}}>
         <Carousel/>
         </div> */}
-        <div className="divider" style={{width:`100%`}}></div>
-          <p><strong>SIZE</strong></p>
+        <div className="divider"></div>
+          {/* <p><strong>SIZE</strong></p>
           <p style={{textAlign: `center`}}>FIND YOUR SIZE</p>
-        <div className="divider" style={{width:`100%`}}></div>
-
+        <div className="divider" style={{width:`100%`}}></div> */}
+        <AddButton sku={props.data.stripeSku.id}/>
         <p><strong>FREE 3-DAY SHIPPING</strong></p>
-        <Button color="danger" size="lg" block>Add To Cart</Button>{' '}
     </Layout>
   )
 }

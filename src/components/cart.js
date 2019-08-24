@@ -1,9 +1,9 @@
 import React from 'react'
 import Img from "gatsby-image"
-import { Row, Col } from "reactstrap"
+import { Row, Col, Form, FormGroup, Input } from "reactstrap"
 import Checkout from "./checkout"
 
-const Cart = class extends React.Component {
+const ShoppingCart = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,60 +28,69 @@ const Cart = class extends React.Component {
   }
 
   removeItem(removedSku) {
-    console.log("removed: ", removedSku)
     const cart = this.state.cart.filter(product => product.sku !== removedSku);
-    console.log("new cart: ", cart)
     this.setState({ cart })
-    console.log("new cart: ", this.state.cart);
     localStorage.setItem('stripe_checkout_items', JSON.stringify(cart))
   }
 
   render() {
-    console.log("cat: ", this.state.cart)
-    console.log("Data: ", this.props.skus)
     const skus = this.props.skus.skus.edges;
-    console.log("sku: ", skus)
     return (
-      <div>
-        {/* Map through skus filtering itmes in cart
-        Bind functions to each item for deletion */}
+      <Row>
         
-        {this.state.cart.map((node) => {
-          const skuData = skus.filter(sku => sku.node.id === node.sku)
-          console.log(skuData[0].node);
-
-          return (
-            <div>
-              <Row>
-
-                <Col xs={6}>
-                    <Img fluid={skuData[0].node.localFiles[0].childImageSharp.fluid}/>
-                  </Col>
-                  
+        <Col xs={12} sm={8}>
+          {this.state.cart.map((node) => {
+            const skuData = skus.filter(sku => sku.node.id === node.sku);
+            return (
+              <div>
+                <Row>
+                  <Col xs={6}>
+                      <Img fluid={skuData[0].node.localFiles[0].childImageSharp.fluid}/>
+                  </Col> 
                   <Col xs={6}>
                       <p><strong>{skuData[0].node.attributes.name}</strong></p>
-                      <p>{node.quantity}</p>
-                    </Col>
-                  
-                </Row>
-
-                <Row>
-
-                  <Col xs={6}>
-                  <button onClick={event => this.removeItem(skuData[0].node.id)}>Remove</button>
+                        <Input type="select" value={node.quantity}>
+                          <option value={1}>1</option>
+                          <option value={2}>2</option>
+                          <option value={3}>3</option>
+                          <option value={4}>4</option>
+                          <option value={5}>5</option>
+                          <option value={6}>6</option>
+                          <option value={7}>7</option>
+                          <option value={8}>8</option>
+                          <option value={9}>9</option>
+                        </Input>
                   </Col>
-
                 </Row>
-
+                <Row>
+                  <Col xs={6}>
+                    <div onClick={event => this.removeItem(skuData[0].node.id)}>Remove</div>
+                  </Col>
+                </Row>
+                <div className="divider"></div>
               </div>
-          )
-        })}
+            )
+          })}
+        </Col>
+    
+        <Col xs={12} sm={4}>
+          <Row className="justify-content-center no-gutters" style={{ background: `gray`}}>
+            <Col xs={12}>
+              <p><strong>ORDER SUMMARY</strong></p>
+            </Col>
+            <Col xs={12}>
+              <p>Item Subtotal ()</p>
+            </Col>
+            <Col xs={12}>
+              <p>Estimated Shipping</p>
+            </Col>
+            <Checkout cart={this.state.cart}/>
+          </Row>
+        </Col>
 
-
-        <Checkout cart={this.state.cart}/>
-      </div>
+      </Row>
     )
   }
 }
 
-export default Cart
+export default ShoppingCart
