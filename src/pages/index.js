@@ -1,20 +1,28 @@
 import React from "react"
 import { Link } from "gatsby"
+import { Button, Row, Col } from 'reactstrap';
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+
+import productThemes from "../data/product-themes.json"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+
+    {productThemes.map(theme => (
+      <Row style={{marginBottom:`15px`}} className="justify-content-center">
+        <Col xs={10}>
+          <Link to={theme.name}>        
+            <Button style={{ width:`100%`}} outline color="primary">{theme.name}</Button>{' '}
+          </Link>
+        </Col>
+      </Row>
+    ))}
+    
+ 
   </Layout>
 )
 

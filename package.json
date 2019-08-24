@@ -1,22 +1,29 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "ski-town-gear",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Your one stop shop for ski town gear; t-shirts, hoodies, beanies, fluffy socks and much more from all of youre favorite ski towns.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Connor Jaksik <connor.jaksik@gmail.com>",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "gatsby": "^2.13.73",
     "gatsby-image": "^2.2.10",
+    "gatsby-plugin-google-analytics": "^2.1.10",
     "gatsby-plugin-manifest": "^2.2.6",
     "gatsby-plugin-offline": "^2.2.7",
     "gatsby-plugin-react-helmet": "^3.1.4",
     "gatsby-plugin-sharp": "^2.2.13",
+    "gatsby-plugin-stripe": "^1.2.2",
     "gatsby-source-filesystem": "^2.1.11",
+    "gatsby-source-stripe": "^3.0.3",
+    "gatsby-transformer-remark": "^2.6.19",
     "gatsby-transformer-sharp": "^2.2.7",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "reactstrap": "^8.0.1",
+    "slug": "^1.1.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
