@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Cart from "../components/cart"
+import Test from "../components/checkoutProvider"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CartPage = ({ data }) => (

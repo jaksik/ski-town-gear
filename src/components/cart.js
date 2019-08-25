@@ -1,7 +1,6 @@
 import React from 'react'
 import Img from "gatsby-image"
 import { Row, Col, Form, FormGroup, Input } from "reactstrap"
-import Checkout from "./checkout"
 
 const ShoppingCart = class extends React.Component {
   constructor(props) {
@@ -37,7 +36,7 @@ const ShoppingCart = class extends React.Component {
     const skus = this.props.skus.skus.edges;
     return (
       <Row>
-        
+
         <Col xs={12} sm={8}>
           {this.state.cart.map((node) => {
             const skuData = skus.filter(sku => sku.node.id === node.sku);
@@ -84,10 +83,8 @@ const ShoppingCart = class extends React.Component {
             <Col xs={12}>
               <p>Estimated Shipping</p>
             </Col>
-            <Checkout cart={this.state.cart}/>
           </Row>
         </Col>
-
       </Row>
     )
   }

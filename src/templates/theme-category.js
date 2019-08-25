@@ -9,7 +9,6 @@ import Carousel from "../components/productCarousel"
 import ProductCard from "../components/productCard"
 
 function BlogPost(props) {
-    console.log(skus)
     const skus = props.data.allStripeSku.edges;
     const post = props.data.markdownRemark;
     const url = props.data.site.siteMetadata.siteUrl

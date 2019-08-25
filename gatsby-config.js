@@ -1,3 +1,5 @@
+var proxy = require('http-proxy-middleware')
+
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -16,7 +18,7 @@ module.exports = {
       resolve: `gatsby-source-stripe`,
       options: {
         objects: ['Sku'],
-        secretKey: process.env.STRIPE_SECRET_KEY,
+        secretKey: `sk_test_DiIrhluODliOuo2J5EAxaGxj00DdFVPCoZ`,
         downloadFiles: true,
       },
     },
@@ -53,4 +55,15 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': ''
+        }
+      })
+    )
+  }
 }
