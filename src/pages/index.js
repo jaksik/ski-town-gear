@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-
     {productThemes.map(theme => (
       <Row style={{marginBottom:`15px`}} className="justify-content-center">
         <Col xs={10}>
