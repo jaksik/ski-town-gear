@@ -1,6 +1,7 @@
 import React from 'react'
 import Img from "gatsby-image"
 import { Row, Col, Form, FormGroup, Input } from "reactstrap"
+import StripeForm from "../components/stripeForm"
 
 const ShoppingCart = class extends React.Component {
   constructor(props) {
@@ -85,6 +86,9 @@ const ShoppingCart = class extends React.Component {
             </Col>
           </Row>
         </Col>
+
+        <StripeForm cartItems={this.state.cart}/>
+
       </Row>
     )
   }

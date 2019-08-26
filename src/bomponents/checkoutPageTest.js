@@ -1,5 +1,5 @@
 import React from 'react';
-import useSignUpForm from '../components/CheckoutForm';
+import useSignUpForm from '../bomponents/CheckoutForm';
 
 const Signup = () => {
 

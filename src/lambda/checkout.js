@@ -1,38 +1,52 @@
 const stripe = require('stripe')('sk_test_DiIrhluODliOuo2J5EAxaGxj00DdFVPCoZ');
 
+
+function errorResponse(err, callback) {
+  const response = {
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
+    statusCode: 500,
+    body: JSON.stringify({
+      error: err
+    })
+  }
+
+  if (typeof callback === 'function') {
+    callback(null, response)
+  }
+}
+
 module.exports.handler = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body)
 
-  const order = await stripe.orders.create({
-    currency: 'usd',
-    email: 'jenny.rosen@example.com',
-    items: requestBody.items,
-    shipping: requestBody.shipping,
-  });
+  try {
 
-  stripe.tokens.create({
-    card: requestBody.token.card
-  }, function(err, token) {
-      if (err) {
-        console.log("======= ERROR: ", err)
-      }
-      // asynchronously called
-      stripe.orders.pay(order.id, {
-          source: token.id, // obtained with Stripe.js
-      }, function(err, order) {
-          // asynchronously called
-        }
-      );
+    const order = await stripe.orders.create({
+      currency: 'usd',
+      email: 'jenny.rosen@example.com',
+      items: requestBody.items,
+      shipping: requestBody.shipping,
+    });
 
-      callback(null, {
-        // return null to show no errors
-        statusCode: 200, // http status code
-        body: JSON.stringify({
-          err: err,
-          token: token,
-          order: order,
-          msg: "Hello, World! " + Math.round(Math.random() * 10),
-        }),
-      })  
-    });   
+    stripe.orders.pay(order.id, {
+      source: requestBody.token.id,
+    })
+
+    const response = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      statusCode: 200,
+      body: JSON.stringify({
+        data: order,
+        message: 'Order placed successfully!',
+      }),
+    }
+
+    callback(null, response)
+
+  } catch (e) {
+      errorResponse(e, callback)
+  }
 }
