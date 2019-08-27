@@ -36,14 +36,14 @@ const ShoppingCart = class extends React.Component {
   render() {
     const skus = this.props.skus.skus.edges;
     return (
-      <Row>
+      <Row className="no-gutters">
 
         <Col xs={12} sm={8}>
           {this.state.cart.map((node) => {
             const skuData = skus.filter(sku => sku.node.id === node.sku);
             return (
               <div>
-                <Row>
+                <Row className="no-gutters">
                   <Col xs={6}>
                       <Img fluid={skuData[0].node.localFiles[0].childImageSharp.fluid}/>
                   </Col> 
@@ -62,7 +62,7 @@ const ShoppingCart = class extends React.Component {
                         </Input>
                   </Col>
                 </Row>
-                <Row>
+                <Row className="no-gutters">
                   <Col xs={6}>
                     <div onClick={event => this.removeItem(skuData[0].node.id)}>Remove</div>
                   </Col>

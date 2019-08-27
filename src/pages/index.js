@@ -1,28 +1,123 @@
 import React from "react"
 import { Link } from "gatsby"
+import Img from "gatsby-image"
 import { Button, Row, Col } from 'reactstrap';
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
+import Collapse from "../components/homeCollapse"
 import productThemes from "../data/product-themes.json"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-const IndexPage = () => (
+import '../styles/landing.css'
+const IndexPage = ({ data }) => {
+  console.log("data: ", data)
+  return (
   <Layout>
     <SEO title="Home" />
-    {productThemes.map(theme => (
-      <Row style={{marginBottom:`15px`}} className="justify-content-center">
+    
+    <Img fluid={data.coverImg.childImageSharp.fluid} />
+    <Row className="no-gutters">
+      <Col xs={12}>
+        <Link to="/shop/mens">
+          <Button outline color="secondary" className="home-button">Men's</Button>{' '}
+        </Link>
+      </Col>
+      <Col xs={12}>
+        <Link to="/shop/womens">
+          <Button outline color="secondary" className="home-button">Women's</Button>{' '}
+        </Link>
+      </Col>
+      <Col xs={12}>
+        <Link to="/">
+          <Button outline color="secondary" className="home-button">Equipment</Button>{' '}
+        </Link>
+      </Col>
+      <Col xs={12}>
+        <Link to="/">
+          <Button outline color="secondary" className="home-button">Accessories</Button>{' '}
+        </Link>
+      </Col>
+    </Row>
+
+
+    {/* {productThemes.map(theme => (
+      <Row style={{marginBottom:`15px`}} className="justify-content-center no-gutters">
         <Col xs={10}>
           <Link to={theme.name}>        
             <Button style={{ width:`100%`}} outline color="primary">{theme.name}</Button>{' '}
           </Link>
         </Col>
       </Row>
-    ))}
+    ))} */}
+
+    <Row className="no-gutters">
+      <Col xs={12}>
+        <Img fluid={data.coverTwo.childImageSharp.fluid} />
+        <h3>Breckenridge</h3>
+      </Col>
+      <Col xs={6}>
+        <button>Men's</button>
+      </Col>
+      <Col xs={6}>
+        <button>Women's</button>
+      </Col>
+    </Row>
+
+    <Row className="no-gutters">
+      <Col xs={12}>
+        <Img fluid={data.coverThree.childImageSharp.fluid} />
+        <h3>Keystone</h3>
+      </Col>
+      <Col xs={6}>
+        <button>Men's</button>
+      </Col>
+      <Col xs={6}>
+        <button>Women's</button>
+      </Col>
+    </Row>
+
+    <Row className="no-gutters">
+      <Col xs={12}>
+        <Img fluid={data.coverTwo.childImageSharp.fluid} />
+        <h3>Vail</h3>
+      </Col>
+      <Col xs={6}>
+        <button>Men's</button>
+      </Col>
+      <Col xs={6}>
+        <button>Women's</button>
+      </Col>
+    </Row>
+
+   
     
- 
   </Layout>
-)
+)}
 
 export default IndexPage
+
+export const query = graphql`
+  query {
+    coverImg: file(relativePath: { eq: "cover.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth:4000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    coverTwo: file(relativePath: { eq: "breckenridge.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth:4000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    coverThree: file(relativePath: { eq: "keystone.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth:4000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`

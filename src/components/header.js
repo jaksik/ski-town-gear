@@ -11,7 +11,7 @@ const Header = ({ siteTitle }) => (
       background: `white`,
     }}
   >
-    <Row className="d-none d-sm-block no-gutters">
+    {/* <Row className="d-none d-sm-block no-gutters">
       <Col xs={2} style={{ float:`right`, display:`` }}>
               <Link
                 to="/cart"
@@ -26,15 +26,14 @@ const Header = ({ siteTitle }) => (
                 <img style={{ float:`right`}} src={cartLogo} width={30}/>
               </Link>
           </Col>
-    </Row>
+    </Row> */}
     <div
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 className="d-none d-md-block" style={{ margin: 0 }}>
+      {/* <h1 className="d-none d-md-block" style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
@@ -44,23 +43,30 @@ const Header = ({ siteTitle }) => (
         >
           {siteTitle}
         </Link>
-      </h1>
-      <Row className="xs-block d-md-none">
-          <Col xs={4}>
+      </h1> */}
+      <Row className="xs-block d-md-none align-items-center no-gutters">
+          <Col>
             <Link
             to="/"
             >
-              <img src={logo} width={30}/>
+              <img src={logo} style={{width: `50px`}}/>
             </Link>
           </Col>
-          <Col xs={2}>
+          <Col xs={2} className="offset-2">
             <Link
             to="/contact"
             >
               <img src={contactLogo} width={30}/>
             </Link>
           </Col>
-          <Col xs={2}>
+          <Col xs={2} className="">
+            <Link
+            to="/cart"
+            >
+              <img src={cartLogo} width={30}/>
+            </Link>
+          </Col>
+          <Col xs={2} className="">
             <Link
             to="/cart"
             >
@@ -69,7 +75,9 @@ const Header = ({ siteTitle }) => (
           </Col>
       </Row>
     </div>
-    <Row style={{ background: `black`, color: `white`, textAlign: `center` }} className="no-gutters justify-content-center">
+
+    {/* Anouncement Banner */}
+    <Row style={{ background: `black`, color: `white`, textAlign: `center` }} className="no-gutters justify-content-center align-items-center">
       <Col md={4} className="d-none d-md-block">
           <p>LABOR DAY SALE!</p>
       </Col>

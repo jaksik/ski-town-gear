@@ -8,4 +8,4 @@ description: >-
 featuredpost: true
 image: ../images/cover.jpg
 ---
-Let's say you're creating pages for your markdown files in Gatsby JS and you realize that you want more 
+Call 569-555-9849
