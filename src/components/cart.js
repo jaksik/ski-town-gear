@@ -87,6 +87,8 @@ const ShoppingCart = class extends React.Component {
               </div>
             )
           })}
+
+          <StripeForm cartItems={this.state.cart}/>
       </div>
     )
   }

@@ -25,7 +25,7 @@ function BlogPost(props) {
             />
                 <h1>{title}</h1>
                 <Carousel/>
-                <div dangerouslySetInnerHTML={{ __html: post.html }} />
+                {/* <div dangerouslySetInnerHTML={{ __html: post.html }} /> */}
 
                 <Row className="no-gutters">
                     {skus.map(sku => {
@@ -72,9 +72,8 @@ export const query = graphql`
        }
    }
 
-   allStripeSku(
-    sort: { fields: [price] }
-  ) {
+   allStripeSku(filter: {product: {metadata: {theme: { eq: "breckenridge"}}}})
+   {
     edges {
       node {
         id

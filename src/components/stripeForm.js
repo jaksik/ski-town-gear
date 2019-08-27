@@ -1,23 +1,13 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import logo from '../images/icons/mountains.jpg'
+
 const StripeForm = (props) => {
-
-  console.log("Propsss: ", props)
-
-
-  // const cartItems = props.cartItems.map(([sku, quantity]) => ({
-  //   type: 'sku',
-  //   parent: sku.id,
-  //   quantity
-  // }))
-
+  console.log("Props: ", props)
 
   const onToken = async (token, address) => {
-    console.log("address: ", address)
 
     let call
-
     call = await fetch('/.netlify/functions/checkout', {
       method: 'POST',
       body: JSON.stringify({
@@ -35,7 +25,7 @@ const StripeForm = (props) => {
           items: [
             {
               type: 'sku',
-              parent: 'sku_FgJVldqsyrIzqQ',
+              parent: 'sku_FhS5KnqfAYwXmw',
               quantity: 2,
             },
           ],
@@ -48,7 +38,7 @@ const StripeForm = (props) => {
     return (
       <StripeCheckout
         token={onToken}
-        stripeKey="pk_test_m1CkOjN6bKVkDf7hXoxOFhgc00e3saL74z"
+        stripeKey="pk_test_vcN7VWamiWbPRga1t0VEWnAe00iUh1dr3k"
         name="Ski Town Gear"
         description="Hello there"
         image={logo}

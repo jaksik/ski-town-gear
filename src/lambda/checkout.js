@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_DiIrhluODliOuo2J5EAxaGxj00DdFVPCoZ');
+const stripe = require('stripe')("sk_test_edDqKCirhAC2rRRNFlvyWzzm00aaUdxk6J");
 
 
 function errorResponse(err, callback) {

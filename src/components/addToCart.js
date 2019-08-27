@@ -35,13 +35,13 @@ class AddToCart extends React.Component {
     let updatedCart = this.state.cart.map(item => {
       if (newItem === item.sku) {
         itemExisted = true
-        return { sku: item.sku, quantity: ++item.quantity }
+        return { type:"sku", sku: item.sku, quantity: ++item.quantity }
       } else {
         return item
       }
     })
     if (!itemExisted) {
-      updatedCart = [...updatedCart, { sku: newItem, quantity: 1 }]
+      updatedCart = [...updatedCart, { type:"sku", sku: newItem, quantity: 1 }]
     }
     this.setState({ cart: updatedCart })
     // Store the cart in the localStorage.
