@@ -11,6 +11,7 @@ const ShoppingCart = class extends React.Component {
       productInfo: [],
     };
     this.removeItem = this.removeItem.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   componentDidMount() {
@@ -33,33 +34,48 @@ const ShoppingCart = class extends React.Component {
     localStorage.setItem('stripe_checkout_items', JSON.stringify(cart))
   }
 
+  updateQuantity(event) {
+    console.log("event: ", event)
+  }
+
   render() {
     const skus = this.props.skus.skus.edges;
     return (
-      <Row className="no-gutters">
-
-        <Col xs={12} sm={8}>
+      <div>
+        {/* Map through the items in the cart */}
           {this.state.cart.map((node) => {
             const skuData = skus.filter(sku => sku.node.id === node.sku);
             return (
               <div>
                 <Row className="no-gutters">
-                  <Col xs={6}>
+                  <Col xs={5}>
                       <Img fluid={skuData[0].node.localFiles[0].childImageSharp.fluid}/>
                   </Col> 
                   <Col xs={6}>
-                      <p><strong>{skuData[0].node.attributes.name}</strong></p>
-                        <Input type="select" value={node.quantity}>
-                          <option value={1}>1</option>
-                          <option value={2}>2</option>
-                          <option value={3}>3</option>
-                          <option value={4}>4</option>
-                          <option value={5}>5</option>
-                          <option value={6}>6</option>
-                          <option value={7}>7</option>
-                          <option value={8}>8</option>
-                          <option value={9}>9</option>
-                        </Input>
+                      <Row>
+                        <Col xs={12}>
+                          <p><strong>{skuData[0].node.attributes.name}</strong></p>
+                        </Col>
+                        <Col xs={12}>
+                          <p>Description</p>
+                        </Col>
+                        <Col xs={6}>
+                          <Input type="select" placeholder={node.quantity}>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                            <option value={6}>6</option>
+                            <option value={7}>7</option>
+                            <option value={8}>8</option>
+                            <option value={9}>9</option>
+                          </Input>
+                        </Col>
+                        <Col xs={12}>
+                          <p>Price</p>
+                        </Col>
+                      </Row>
                   </Col>
                 </Row>
                 <Row className="no-gutters">
@@ -71,25 +87,7 @@ const ShoppingCart = class extends React.Component {
               </div>
             )
           })}
-        </Col>
-    
-        <Col xs={12} sm={4}>
-          <Row className="justify-content-center no-gutters" style={{ background: `gray`}}>
-            <Col xs={12}>
-              <p><strong>ORDER SUMMARY</strong></p>
-            </Col>
-            <Col xs={12}>
-              <p>Item Subtotal ()</p>
-            </Col>
-            <Col xs={12}>
-              <p>Estimated Shipping</p>
-            </Col>
-          </Row>
-        </Col>
-
-        <StripeForm cartItems={this.state.cart}/>
-
-      </Row>
+      </div>
     )
   }
 }

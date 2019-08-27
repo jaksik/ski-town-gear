@@ -73,7 +73,7 @@ class AddToCart extends React.Component {
             <Row className="no-gutters justify-content-center" style={{ margin:`0 0 10px`}}>
                 <Col xs={10}>
                 <Link
-                    to="/cart"
+                    to="/mycart"
                 >
                     <Button onClick={this.toggle} color="danger" size="md" block>Go To Cart</Button>{' '}
                 </Link>

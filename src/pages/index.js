@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Collapse from "../components/homeCollapse"
 import productThemes from "../data/product-themes.json"
+import CoverPageAd from "../components/coverPageAd"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/landing.css'
 const IndexPage = ({ data }) => {
@@ -16,6 +17,7 @@ const IndexPage = ({ data }) => {
     <SEO title="Home" />
     
     <Img fluid={data.coverImg.childImageSharp.fluid} />
+    
     <Row className="no-gutters">
       <Col xs={12}>
         <Link to="/shop/mens">
@@ -39,58 +41,12 @@ const IndexPage = ({ data }) => {
       </Col>
     </Row>
 
-
-    {/* {productThemes.map(theme => (
-      <Row style={{marginBottom:`15px`}} className="justify-content-center no-gutters">
-        <Col xs={10}>
-          <Link to={theme.name}>        
-            <Button style={{ width:`100%`}} outline color="primary">{theme.name}</Button>{' '}
-          </Link>
-        </Col>
-      </Row>
-    ))} */}
-
-    <Row className="no-gutters">
-      <Col xs={12}>
-        <Img fluid={data.coverTwo.childImageSharp.fluid} />
-        <h3>Breckenridge</h3>
-      </Col>
-      <Col xs={6}>
-        <button>Men's</button>
-      </Col>
-      <Col xs={6}>
-        <button>Women's</button>
-      </Col>
-    </Row>
-
-    <Row className="no-gutters">
-      <Col xs={12}>
-        <Img fluid={data.coverThree.childImageSharp.fluid} />
-        <h3>Keystone</h3>
-      </Col>
-      <Col xs={6}>
-        <button>Men's</button>
-      </Col>
-      <Col xs={6}>
-        <button>Women's</button>
-      </Col>
-    </Row>
-
-    <Row className="no-gutters">
-      <Col xs={12}>
-        <Img fluid={data.coverTwo.childImageSharp.fluid} />
-        <h3>Vail</h3>
-      </Col>
-      <Col xs={6}>
-        <button>Men's</button>
-      </Col>
-      <Col xs={6}>
-        <button>Women's</button>
-      </Col>
-    </Row>
-
-   
+    <CoverPageAd title="Breckenridge" img={data.coverTwo.childImageSharp.fluid}/>
     
+    <CoverPageAd title="Keystone" img={data.coverThree.childImageSharp.fluid}/>
+
+    <CoverPageAd title="Aspen" img={data.coverImg.childImageSharp.fluid}/>
+
   </Layout>
 )}
 

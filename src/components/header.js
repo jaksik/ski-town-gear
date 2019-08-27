@@ -61,14 +61,14 @@ const Header = ({ siteTitle }) => (
           </Col>
           <Col xs={2} className="">
             <Link
-            to="/cart"
+            to="/mycart"
             >
               <img src={cartLogo} width={30}/>
             </Link>
           </Col>
           <Col xs={2} className="">
             <Link
-            to="/cart"
+            to="/mycart"
             >
               <img src={cartLogo} width={30}/>
             </Link>

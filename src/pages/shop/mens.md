@@ -1,5 +1,5 @@
 ---
-templateKey: theme-category
+templateKey: shop-category
 title: Men's Ski Town Gear
 date: 2019-05-18T17:53:35.406Z
 description: >-
