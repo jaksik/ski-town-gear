@@ -1,12 +1,8 @@
 import React from 'react';
 import Layout from '../components/layout';
-import Img from 'gatsby-image';
 import Metatags from '../components/Metatags';
 import { graphql } from 'gatsby'
 import { Row, Col, Button } from 'reactstrap'
-// import "../style/index.css"
-import Carousel from "../components/productCarousel"
-import ProductCard from "../components/productCard"
 import DisplayProducts from "../components/displayProducts"
 
 function ShopCategoryTemplate(props) {
@@ -24,19 +20,12 @@ function ShopCategoryTemplate(props) {
                 url={url}
                 pathname={props.location.pathname}
             />
-          
-
-                
-
-                    <DisplayProducts skus={skus}/>
-
+            <DisplayProducts skus={skus}/>
         </Layout>
     )
 }
 
-
 export default ShopCategoryTemplate
-
 
 export const query = graphql`
 
