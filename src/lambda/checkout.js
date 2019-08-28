@@ -19,18 +19,19 @@ function errorResponse(err, callback) {
 
 module.exports.handler = async (event, context, callback) => {
   const requestBody = JSON.parse(event.body)
+  const { id, email } = requestBody.token
+  const { currency, items, shipping } = requestBody.order
 
   try {
-
     const order = await stripe.orders.create({
-      currency: 'usd',
-      email: 'jenny.rosen@example.com',
-      items: requestBody.items,
-      shipping: requestBody.shipping,
+      currency,
+      items,
+      shipping,
+      email,
     });
 
     stripe.orders.pay(order.id, {
-      source: requestBody.token.id,
+      source: id,
     })
 
     const response = {
